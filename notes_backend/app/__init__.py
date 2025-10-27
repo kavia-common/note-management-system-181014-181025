@@ -1,0 +1,3 @@
+"""
+Notes backend package initializer.
+"""

@@ -1,16 +1,13 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+# This module previously hosted a minimal FastAPI app.
+# The application has been restructured under the `app/` package with
+# a full Notes CRUD implementation.
+#
+# The actual ASGI app entrypoint is now `app.main:app`.
+# Keeping this file to avoid import errors if any tooling references it.
 
-app = FastAPI()
+from app.main import app as app  # re-export the main app
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+__all__ = ["app"]
 
-@app.get("/")
-def health_check():
-    return {"message": "Healthy"}
+# No-op reference to ensure linters recognize usage in this file context.
+_ = app
